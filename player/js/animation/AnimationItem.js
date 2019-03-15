@@ -67,6 +67,13 @@ AnimationItem.prototype.setParams = function(params) {
     this.assetsPath = params.assetsPath;
     if(params.animationData){
         this.configAnimation(params.animationData);
+        var $ctx = this.globalData.canvasContext;
+        //console.log($ctx);
+        $ctx.save();
+        $ctx.strokeWidth = 20;
+        $ctx.fillStyle = '#CCFF00';
+        $ctx.fillRect(0, 0, 50,50);
+        $ctx.restore();
     }else if(params.path){
         if(params.path.substr(-4) != 'json'){
             if (params.path.substr(-1, 1) != '/') {
@@ -124,6 +131,7 @@ AnimationItem.prototype.includeLayers = function(data) {
     if(data.op > this.animationData.op){
         this.animationData.op = data.op;
         this.totalFrames = Math.floor(data.op - this.animationData.ip);
+        console.log('compare data.op and animationData.op to get totalFrames:', data.op, this.animationData.op, this.totalFrames);
     }
     var layers = this.animationData.layers;
     var i, len = layers.length;

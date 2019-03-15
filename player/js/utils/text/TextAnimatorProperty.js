@@ -476,7 +476,7 @@ TextAnimatorProperty.prototype.getMeasures = function(documentData, lettersChang
                             matrixHelper.translate(animatorProps.p.v[0] * mult[0], animatorProps.p.v[1] * mult[1], -animatorProps.p.v[2] * mult[2]);
                         } else {
                             matrixHelper.translate(animatorProps.p.v[0] * mult, animatorProps.p.v[1] * mult, -animatorProps.p.v[2] * mult);
-                        
+
                         }
                     }
                 }
@@ -522,6 +522,7 @@ TextAnimatorProperty.prototype.getMeasures = function(documentData, lettersChang
                         matrixHelper.translate(letters[i].animatorJustifyOffset + documentData.justifyOffset + (documentData.boxWidth - documentData.lineWidths[letters[i].line]),0,0);
                         break;
                     case 2:
+                        //console.log('translate x to make center:', documentData.justifyOffset, documentData.justifyOffset + (documentData.boxWidth - documentData.lineWidths[lineNumber]) / 2);
                         matrixHelper.translate(letters[i].animatorJustifyOffset + documentData.justifyOffset + (documentData.boxWidth - documentData.lineWidths[letters[i].line])/2,0,0);
                         break;
                 }

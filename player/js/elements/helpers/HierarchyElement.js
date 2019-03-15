@@ -1,50 +1,53 @@
 /**
- * @file 
+ * @file
  * Handles AE's layer parenting property.
  *
  */
 
-function HierarchyElement(){}
+function HierarchyElement() {
+}
 
 HierarchyElement.prototype = {
-	/**
-     * @function 
+    /**
+     * @function
      * Initializes hierarchy properties
      *
      */
-	initHierarchy: function() {
-		//element's parent list
-	    this.hierarchy = [];
-	    //if element is parent of another layer _isParent will be true
-	    this._isParent = false;
-	    this.checkParenting();
-	},
-	/**
-     * @function 
+    initHierarchy: function() {
+        //element's parent list
+        this.hierarchy = [];
+        //if element is parent of another layer _isParent will be true
+        this._isParent = false;
+        this.checkParenting();
+    },
+    /**
+     * @function
      * Sets layer's hierarchy.
-     * @param {array} hierarch
+     * @param {array} hierarchy
      * layer's parent list
      *
-     */ 
-	setHierarchy: function(hierarchy){
-	    this.hierarchy = hierarchy;
-	},
-	/**
-     * @function 
+     */
+    setHierarchy: function(hierarchy) {
+        this.hierarchy = hierarchy;
+    },
+    /**
+     * @function
      * Sets layer as parent.
      *
-     */ 
-	setAsParent: function() {
-	    this._isParent = true;
-	},
-	/**
-     * @function 
+     */
+    setAsParent: function() {
+        this._isParent = true;
+    },
+    /**
+     * @function
      * Searches layer's parenting chain
-     *
-     */ 
-	checkParenting: function(){
-	    if (this.data.parent !== undefined){
-	        this.comp.buildElementParenting(this, this.data.parent, []);
-	    }
-	}
+     * @notes
+	 	 * 这里开始集成父节点属性
+     */
+    checkParenting: function() {
+        if (this.data.parent !== undefined) {
+            //console.log('check parenting from hierachy element:', this.data.parent);
+            this.comp.buildElementParenting(this, this.data.parent, []);
+        }
+    }
 };

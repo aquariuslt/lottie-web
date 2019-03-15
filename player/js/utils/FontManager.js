@@ -217,6 +217,9 @@ var FontManager = (function(){
     }
 
     function getCharData(char, style, font){
+        if(!this.chars){
+            return emptyChar;
+        }
         var i = 0, len = this.chars.length;
         while( i < len) {
             if(this.chars[i].ch === char && this.chars[i].style === style && this.chars[i].fFamily === font){
@@ -238,7 +241,7 @@ var FontManager = (function(){
             //Canvas version
             //fontData.cache[index] = tHelper.measureText(char).width / 100;
             //SVG version
-            //console.log(tHelper.getBBox().width)
+            ////console.log(tHelper.getBBox().width)
             if (char === ' ') {
                 tHelper.textContent = '|' + char + '|';
                 var doubleSize = tHelper.getComputedTextLength();
@@ -279,7 +282,7 @@ var FontManager = (function(){
         this.isLoaded = false;
         this.initTime = Date.now();
     };
-    //TODO: for now I'm adding these methods to the Class and not the prototype. Think of a better way to implement it. 
+    //TODO: for now I'm adding these methods to the Class and not the prototype. Think of a better way to implement it.
     Font.getCombinedCharacterCodes = getCombinedCharacterCodes;
 
     Font.prototype.addChars = addChars;

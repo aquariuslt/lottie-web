@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <base href="/"/>
     <meta charset="UTF-8">
     <style>
-        body, html{
-            background-color:#fff;
+        body, html {
+            background-color: #fff;
             margin: 0px;
             height: 100%;
             overflow-x: hidden;
             overflow-y: auto;
         }
 
-        #lottie{
-            background-color:#ccc;
-            width:100%;
-            height:100%;
-            display:block;
+        #lottie {
+            background-color: #ccc;
+            width: 100%;
+            height: 100%;
+            display: block;
             overflow: hidden;
-            transform: translate3d(0,0,0);
+            transform: translate3d(0, 0, 0);
             /*display:none;*/
         }
 
@@ -79,7 +80,7 @@
     <script src="js/elements/helpers/RenderableDOMElement.js"></script>
     <script src="js/elements/helpers/shapes/ProcessedElement.js"></script>
     <script src="js/elements/helpers/shapes/SVGStyleData.js" data-builds="full,svg,svg_light,html,html_light"></script>
-    <script src="js/elements/helpers/shapes/SVGShapeData.js" ></script>
+    <script src="js/elements/helpers/shapes/SVGShapeData.js"></script>
     <script src="js/elements/helpers/shapes/SVGTransformData.js" data-builds="full,svg,svg_light,html,html_light"></script>
     <script src="js/elements/helpers/shapes/SVGStrokeStyleData.js" data-builds="full,svg,svg_light,html,html_light"></script>
     <script src="js/elements/helpers/shapes/SVGFillStyleData.js" data-builds="full,svg,svg_light,html,html_light"></script>
@@ -142,14 +143,13 @@
     <script src="js/utils/expressions/MaskInterface.js" data-builds="full,svg,canvas,html"></script>
     <script src="js/utils/expressions/ExpressionValueFactory.js" data-builds="full,svg,canvas,html"></script>
     <script src="js/effects/SliderEffect.js" data-builds="full,svg,canvas,html"></script>
-    <script src="js/effects/EffectsManagerPlaceholder.js" ></script>
+    <script src="js/effects/EffectsManagerPlaceholder.js"></script>
     <script src="js/EffectsManager.js" data-builds="full,svg,canvas,html"></script>
     <!-- end Expressions -->
     <!-- endbuild -->
-    <script src="js/module.js" ></script>
+    <script src="js/module.js"></script>
     <!-- <script src="lottie.js"></script> -->
     <!-- <script src="bodymovin_light.js"></script> -->
-
 
 
 </head>
@@ -161,27 +161,22 @@
     var elem = document.getElementById('lottie');
     var animData = {
         container: elem,
-        renderer: 'svg',
-        loop: true,
+        renderer: 'html',
+        loop: false,
         autoplay: true,
-        rendererSettings: {
-            progressiveLoad:true,
-            preserveAspectRatio: 'xMidYMid meet',
-            imagePreserveAspectRatio: 'xMidYMid meet'
-        },
-        path: 'exports/render/data.json'
+        path: 'ssj.json'
     };
     // lottie.setQuality('low');
-    setTimeout(()=>{
-        anim = lottie.loadAnimation(animData);
+    setTimeout(() => {
+        anim = window.lottie.loadAnimation(animData);
         anim.setSubframe(false);
 
-        setTimeout(()=>{
+        setTimeout(() => {
             // anim.goToAndStop(10, true);
-            
-        },0)
-        
-    },0)
+
+        }, 0);
+
+    }, 0);
 
 </script>
 </body>

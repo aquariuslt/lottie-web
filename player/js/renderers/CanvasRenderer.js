@@ -25,6 +25,8 @@ function CanvasRenderer(animationItem, config){
     this.transformMat = new Matrix();
     this.completeLayers = false;
     this.rendererType = 'canvas';
+
+
 }
 extendPrototype([BaseRenderer],CanvasRenderer);
 
@@ -267,8 +269,8 @@ CanvasRenderer.prototype.renderFrame = function(num){
     this.globalData._mdf = !this.renderConfig.clearCanvas;
     this.globalData.projectInterface.currentFrame = num;
 
-     // console.log('--------');
-     // console.log('NEW: ',num);
+     console.log('--------');
+     console.log('Canvas FRAME: ',num);
     var i, len = this.layers.length;
     if(!this.completeLayers){
         this.checkLayers(num);

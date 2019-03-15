@@ -110,7 +110,7 @@ var PropertyFactory = (function(){
                     var time = (frameNum - keyTime) / (nextKeyTime - keyTime);
                     quaternionToEuler(newValue, slerp(quatStart, quatEnd, time));
                 }
-                
+
             } else {
                 for(i = 0; i < len; i += 1) {
                     if (keyData.h !== 1) {
@@ -128,7 +128,7 @@ var PropertyFactory = (function(){
                                     outY = (typeof keyData.o.y[i] === undefined) ? keyData.o.y[0] : keyData.o.y[i];
                                     inX = (typeof keyData.i.x[i] === undefined) ? keyData.i.x[0] : keyData.i.x[i];
                                     inY = (typeof keyData.i.y[i] === undefined) ? keyData.i.y[0] : keyData.i.y[i];
- 
+
                                     fnc = BezierFactory.getBezierEasing(outX, outY, inX, inY).get;
                                     keyData.__fnct[i] = fnc;
                                 } else {
@@ -203,7 +203,7 @@ var PropertyFactory = (function(){
         var qz = quat[2];
         var qw = quat[3];
         var heading = Math.atan2(2*qy*qw-2*qx*qz , 1 - 2*qy*qy - 2*qz*qz)
-        var attitude = Math.asin(2*qx*qy + 2*qz*qw) 
+        var attitude = Math.asin(2*qx*qy + 2*qz*qw)
         var bank = Math.atan2(2*qx*qw-2*qy*qz , 1 - 2*qx*qx - 2*qz*qz);
         out[0] = heading/degToRads;
         out[1] = attitude/degToRads;
@@ -260,6 +260,7 @@ var PropertyFactory = (function(){
                 if (math_abs(this.v[i] - multipliedValue) > 0.00001) {
                     this.v[i] = multipliedValue;
                     this._mdf = true;
+                    // console.log('update v[i] to:', multipliedValue);
                 }
                 i += 1;
             }
@@ -269,7 +270,7 @@ var PropertyFactory = (function(){
     function processEffectsSequence() {
         if(this.elem.globalData.frameId === this.frameId || !this.effectsSequence.length) {
             return;
-        }        
+        }
         if(this.lock) {
             this.setVValue(this.pv);
             return;
@@ -386,6 +387,9 @@ var PropertyFactory = (function(){
             }
         }
         this.effectsSequence = [getValueAtCurrentTime.bind(this)];
+        // if(data.k && data.k[0].n === '0_0_0_0'){
+        //     console.log('calculated effectsSequence:');
+        // }
         this.keyframes = data.k;
         this.offsetTime = elem.data.st;
         this.k = true;
@@ -408,6 +412,14 @@ var PropertyFactory = (function(){
         }
         this._caching={lastFrame:initFrame,lastIndex:0,value:createTypedArray('float32', arrLen)};
         this.addEffect = addEffect;
+
+        if (!window.kfs){
+            window.kfs = [];
+        }
+        if (data.k && data.k[0].n === '0_0_0_0'){
+            console.log('original data need to be check:',data);
+            window.kfs.push(this);
+        }
     }
 
     function getProp(elem,data,type, mult, container) {

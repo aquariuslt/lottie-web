@@ -13,7 +13,13 @@ SVGBaseElement.prototype = {
         var layerElementParent = null;
         //If this layer acts as a mask for the following layer
         var filId, fil, gg;
+        if (this.data.ty == 4 && this.data.td){
+            //console.log('create mask element with data!!!!!:', this.data);
+        }
         if (this.data.td) {
+            if (this.data.ty ==4){
+                //console.log('should create mask element contain self:', this.data);
+            }
             if (this.data.td == 3 || this.data.td == 1) {
                 var masker = createNS('mask');
                 masker.setAttribute('id', this.layerId);
@@ -117,7 +123,7 @@ SVGBaseElement.prototype = {
             } else {
                 this.layerElement.setAttribute('clip-path','url(' + locationHref + '#'+clipId+')');
             }
-            
+
         }
         if (this.data.bm !== 0) {
             this.setBlendMode();
