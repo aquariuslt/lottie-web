@@ -29,6 +29,11 @@ function HCameraElement(data,globalData,comp){
     this.mat = new Matrix();
     this._prevMat = new Matrix();
     this._isFirstFrame = true;
+
+    // TODO: find a better way to make the HCamera element to be compatible with the LayerInterface and TransformInterface.
+    this.finalTransform = {
+        mProp: this
+    };
     console.log('camera layer data:', data);
     console.log('data.or:', data.ks.or);
     console.log('prop.or:', this.or);
@@ -152,5 +157,4 @@ HCameraElement.prototype.prepareFrame = function(num) {
 
 HCameraElement.prototype.destroy = function(){
 };
-HCameraElement.prototype.initExpressions = function(){};
 HCameraElement.prototype.getBaseElement = function(){return null;};
